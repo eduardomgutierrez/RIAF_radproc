@@ -305,84 +305,76 @@ void EvaluateFunctionInVector(fun1 f, Vector v, Vector& w) {
     transform(v.begin(), v.end(), w.begin(), [f](double &x){ return f(x); });
 }
 
-void myH5_write_single_float(const double x, H5File *h5f, H5std_string DATASET_NAME)
+void myH5_write_single_float(const double x, H5File &h5f, H5std_string DATASET_NAME)
 {
 	float y[1];	*y = float(x);
-	hsize_t dimsZero[1] = { 1 };
-	DataSpace *dataspace = new DataSpace(1, dimsZero);
-	DataSet *dataset = new DataSet(h5f->createDataSet(DATASET_NAME, PredType::NATIVE_FLOAT, *dataspace));
-	dataset->write(y, PredType::NATIVE_FLOAT);
-	delete dataspace;	delete dataset;
+	hsize_t dims[1] = { 1 };
+	DataSpace dataspace(1, dims);
+	DataSet dataset = h5f.createDataSet(DATASET_NAME, PredType::NATIVE_FLOAT, dataspace);
+	dataset.write(y, PredType::NATIVE_FLOAT);
 }
 
-void myH5_write_single_float(const double x, Group *h5g, H5std_string DATASET_NAME)
+void myH5_write_single_float(const double x, Group &h5g, H5std_string DATASET_NAME)
 {
 	float y[1];	*y = float(x);
-	hsize_t dimsZero[1] = { 1 };
-	DataSpace *dataspace = new DataSpace(1, dimsZero);
-	DataSet *dataset = new DataSet(h5g->createDataSet(DATASET_NAME, PredType::NATIVE_FLOAT, *dataspace));
-	dataset->write(y, PredType::NATIVE_FLOAT);
-	delete dataspace;	delete dataset;
+	hsize_t dims[1] = { 1 };
+	DataSpace dataspace(1, dims);
+	DataSet dataset = h5g.createDataSet(DATASET_NAME, PredType::NATIVE_FLOAT, dataspace);
+	dataset.write(y, PredType::NATIVE_FLOAT);
 }
 
-void myH5_write_1d_float(const Vector v, H5File *h5f, H5std_string DATASET_NAME)
+void myH5_write_1d_float(const Vector v, H5File &h5f, H5std_string DATASET_NAME)
 {
 	size_t n = v.size();
 	hsize_t dims[1] = { n };
-	DataSpace *dataspace = new DataSpace(1, dims);
-	DataSet *dataset = new DataSet(h5f->createDataSet(DATASET_NAME, PredType::NATIVE_FLOAT, *dataspace));
-	dataset->write(toFloatArray(v.data(), n), PredType::NATIVE_FLOAT);
-	delete dataspace;	delete dataset;
+	DataSpace dataspace(1, dims);
+	DataSet dataset = h5f.createDataSet(DATASET_NAME, PredType::NATIVE_FLOAT, dataspace);
+	dataset.write(toFloatArray(v.data(), n), PredType::NATIVE_FLOAT);
 }
 
-void myH5_write_1d_float(const Vector v, Group *h5g, H5std_string DATASET_NAME)
+void myH5_write_1d_float(const Vector v, Group &h5g, H5std_string DATASET_NAME)
 {
 	size_t n = v.size();
 	hsize_t dims[1] = { n };
-	DataSpace *dataspace = new DataSpace(1, dims);
-	DataSet *dataset = new DataSet(h5g->createDataSet(DATASET_NAME, PredType::NATIVE_FLOAT, *dataspace));
-	dataset->write(toFloatArray(v.data(), n), PredType::NATIVE_FLOAT);
-	delete dataspace;	delete dataset;
+	DataSpace dataspace(1, dims);
+	DataSet dataset = h5g.createDataSet(DATASET_NAME, PredType::NATIVE_FLOAT, dataspace);
+	dataset.write(toFloatArray(v.data(), n), PredType::NATIVE_FLOAT);
 }
 
-void myH5_write_single_double(const double x, H5File *h5f, H5std_string DATASET_NAME)
+void myH5_write_single_double(const double x, H5File &h5f, H5std_string DATASET_NAME)
 {
 	float y[1];	*y = float(x);
-	hsize_t dimsZero[1] = { 1 };
-	DataSpace *dataspace = new DataSpace(1, dimsZero);
-	DataSet *dataset = new DataSet(h5f->createDataSet(DATASET_NAME, PredType::NATIVE_DOUBLE, *dataspace));
-	dataset->write(y, PredType::NATIVE_DOUBLE);
-	delete dataspace;	delete dataset;
+	hsize_t dims[1] = { 1 };
+	DataSpace dataspace(1, dims);
+	DataSet dataset = h5f.createDataSet(DATASET_NAME, PredType::NATIVE_DOUBLE, dataspace);
+	dataset.write(y, PredType::NATIVE_DOUBLE);
 }
 
-void myH5_write_single_double(const double x, Group *h5g, H5std_string DATASET_NAME)
+void myH5_write_single_double(const double x, Group &h5g, H5std_string DATASET_NAME)
 {
 	double y[1];	*y = double(x);
-	hsize_t dimsZero[1] = { 1 };
-	DataSpace *dataspace = new DataSpace(1, dimsZero);
-	DataSet *dataset = new DataSet(h5g->createDataSet(DATASET_NAME, PredType::NATIVE_DOUBLE, *dataspace));
-	dataset->write(y, PredType::NATIVE_DOUBLE);
-	delete dataspace;	delete dataset;
+	hsize_t dims[1] = { 1 };
+	DataSpace dataspace(1, dims);
+	DataSet dataset = h5g.createDataSet(DATASET_NAME, PredType::NATIVE_DOUBLE, dataspace);
+	dataset.write(y, PredType::NATIVE_DOUBLE);
 }
 
-void myH5_write_1d_double(const Vector v, H5File *h5f, H5std_string DATASET_NAME)
+void myH5_write_1d_double(const Vector v, H5File &h5f, H5std_string DATASET_NAME)
 {
 	size_t n = v.size();
 	hsize_t dims[1] = { n };
-	DataSpace *dataspace = new DataSpace(1, dims);
-	DataSet *dataset = new DataSet(h5f->createDataSet(DATASET_NAME, PredType::NATIVE_DOUBLE, *dataspace));
-	dataset->write(v.data(), PredType::NATIVE_DOUBLE);
-	delete dataspace;	delete dataset;
+	DataSpace dataspace(1, dims);
+	DataSet dataset = h5f.createDataSet(DATASET_NAME, PredType::NATIVE_DOUBLE, dataspace);
+	dataset.write(v.data(), PredType::NATIVE_DOUBLE);
 }
 
-void myH5_write_1d_double(const Vector v, Group *h5g, H5std_string DATASET_NAME)
+void myH5_write_1d_double(const Vector v, Group &h5g, H5std_string DATASET_NAME)
 {
 	size_t n = v.size();
 	hsize_t dims[1] = { n };
-	DataSpace *dataspace = new DataSpace(1, dims);
-	DataSet *dataset = new DataSet(h5g->createDataSet(DATASET_NAME, PredType::NATIVE_DOUBLE, *dataspace));
-	dataset->write(v.data(), PredType::NATIVE_DOUBLE);
-	delete dataspace;	delete dataset;
+	DataSpace dataspace(1, dims);
+	DataSet dataset = h5g.createDataSet(DATASET_NAME, PredType::NATIVE_DOUBLE, dataspace);
+	dataset.write(v.data(), PredType::NATIVE_DOUBLE);
 }
 
 int createH5file(const H5std_string FILE_NAME, const State& st)
@@ -394,11 +386,11 @@ int createH5file(const H5std_string FILE_NAME, const State& st)
         Exception::dontPrint();
 
         // Create a new file using default property lists.
-        H5File *h5file = new H5File(FILE_NAME, H5F_ACC_TRUNC);
+        H5File h5file(FILE_NAME, H5F_ACC_TRUNC);
 
 		// HEADER ///////////////////////////////////////////////////////////////////////
-		Group *header_id = new Group(h5file->createGroup("Header"));
-
+		//Group *header_id = new Group(h5file->createGroup("Header"));
+		Group header_id = h5file.createGroup("Header");
 		myH5_write_single_float(blackHoleMass/solarMass, header_id, "M");
 		myH5_write_single_float(accRateOut / (1.39e18 * blackHoleMass/solarMass), header_id, "Mdot_out");
 		myH5_write_single_float(s, header_id, "sWind");
@@ -407,12 +399,12 @@ int createH5file(const H5std_string FILE_NAME, const State& st)
 		myH5_write_single_float(alpha, header_id, "alpha");
 		myH5_write_single_float(jAngMom, header_id, "jAngMom");
 
-		delete header_id;
+		//delete header_id;
 		/////////////////////////////////////////////////////////////////////////////////
 
 		// RIAF /////////////////////////////////////////////////////////////////////////
 
-		Group *RIAF_id = new Group(h5file->createGroup("RIAF"));
+		Group RIAF_id = h5file.createGroup("RIAF");
 
 		Vector rVec = st.photon.ps.dimensions[DIM_R]->values;
 		Vector w(nR, 0.0);
@@ -421,8 +413,8 @@ int createH5file(const H5std_string FILE_NAME, const State& st)
 		myH5_write_1d_float(w, RIAF_id, "r");
 		w.assign(w.size(), 0.0);
 
-		EvaluateFunctionInVector(volume, rVec, w);
-		myH5_write_1d_double(w, RIAF_id, "volume");
+		EvaluateFunctionInVector([](double r) { return volume(r)/P3(schwRadius); }, rVec, w);
+		myH5_write_1d_float(w, RIAF_id, "volume");
 		w.assign(w.size(), 0.0);
 
 		EvaluateFunctionInVector([](double r) { return accRateADAF(r)/accRateOut; }, rVec, w);
@@ -455,14 +447,21 @@ int createH5file(const H5std_string FILE_NAME, const State& st)
 
 		myH5_write_1d_float(redshift_to_inf, RIAF_id, "redshift_to_inf");
 
-		RIAF_id->close();
+		RIAF_id.close();
 
-		h5file->createGroup("SSD");
+		Group SSD_id = h5file.createGroup("SSD");
+		SSD_id.close();
 
+		Group Particles_id = h5file.createGroup("Particles");
 		for (const auto &p : st.particles) {
-   			h5file->createGroup(p->id);
+   			Group p_id = Particles_id.createGroup(p->id);
+			hsize_t dims[2] = { nR, nE };
+			DataSpace dataspace(2, dims);
+			p_id.createDataSet("Injection", PredType::NATIVE_FLOAT, dataspace);
+			p_id.createDataSet("Distribution", PredType::NATIVE_FLOAT, dataspace);
 		}
-		h5file->close();
+		Particles_id.close();
+		h5file.close();
 
     } // end of try block
     // catch failure caused by the H5File operations
