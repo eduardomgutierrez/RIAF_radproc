@@ -1,0 +1,62 @@
+#Directories
+build/
+__pychache__/
+
+.vscode/
+.vs/
+
+*.bz2
+
+*.ipch
+.builds
+
+*.gz
+*.mk
+Makefile
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+*.pyc
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+
+# Generated files
+*.txt
+*.dat
+*.ipynb
+*.diff
+*.pdf
+*.jpg
+*.eps
+*.png
+*.h5
+
